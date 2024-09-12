@@ -1,0 +1,17 @@
+my\example\model\InventoryStatus.class
+my\example\servlet\TextResultServlet.class
+my\example\service\NameService.class
+my\example\servlet\HtmlResultServlet.class
+my\example\view\CrudBean.class
+Lap1\SelectoneB.class
+my\example\service\EmployeeServiceMemory.class
+my\example\model\Product.class
+my\example\view\CrudView.class
+my\example\model\Order.class
+my\example\model\Person.class
+my\example\service\ProductService.class
+Lap1\Selectone.class
+my\example\view\JsfBean.class
+my\example\model\Employee.class
+my\example\view\PrimefacesBean.class
+my\example\view\BasicView.class
