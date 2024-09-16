@@ -27,6 +27,11 @@
 	</servlet-mapping>
 	
 	<context-param>
+  		<param-name>properties_location</param-name>
+  		<param-value>WEB-INF</param-value>
+ 	</context-param>
+	
+	<context-param>
         <param-name>primefaces.CSP</param-name>
         <param-value>true</param-value>
     </context-param>

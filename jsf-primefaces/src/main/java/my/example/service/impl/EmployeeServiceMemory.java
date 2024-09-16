@@ -1,15 +1,20 @@
-package my.example.service;
+package my.example.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import my.example.model.Employee;
+import my.example.service.EmployeeServiceable;
 
-public class EmployeeServiceMemory  {
+@ApplicationScoped
+public class EmployeeServiceMemory implements EmployeeServiceable  {
 
-	public static HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
+	
+	protected static Map<String, Employee> employeeMap = new HashMap<>();
 
 	public void add(Employee employee) {
 		employeeMap.put(employee.getId(), employee);
@@ -25,7 +30,7 @@ public class EmployeeServiceMemory  {
 	}
 
 	public List<Employee> search(Employee employee) {
-		List<Employee> employeeList = new ArrayList<Employee>();
+		List<Employee> employeeList = new ArrayList<>();
 		for (Map.Entry<String, Employee> entry : employeeMap.entrySet()) {
 			employeeList.add(entry.getValue());
 		}
