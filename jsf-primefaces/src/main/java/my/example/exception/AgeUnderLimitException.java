@@ -10,5 +10,4 @@ public class AgeUnderLimitException extends Exception {
 	public AgeUnderLimitException(String message) {
         super(message);
     }
-
 }

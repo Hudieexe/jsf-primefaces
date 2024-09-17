@@ -27,7 +27,7 @@
 			action="#{crudBean.addBtnOnclick}" /> 
 		
 		<p:commandButton id="reset" value="reset" update="@form"
-			action="#{crudBean.setReset}" /> 
+			action="#{crudBean.resetBtnOnclick}" /> 
 
 		<p:dataTable value="#{crudBean.employeeList}" var="m" selectionMode="single" selection="#{crudBean.selectedMember}" rowKey="#{m.id}">
 			<p:ajax event="rowSelect"  listener="#{crudBean.onRowSelect}" update="@form" />
@@ -45,8 +45,7 @@
 				
 			<p:column headerText="Action">
 			 	<p:commandButton id="searchBtn" value="edit" update="@form" action="#{crudBean.editBtnOnclick(m)}">
-					<f:setPropertyActionListener value="#{m}" target="#{crudBean.employeeEdit}"/>
-					<p:ajax event="click" listener="#{crudBean.onRowSelect}" update="@form" />
+					<f:setPropertyActionListener value="#{m}" target="#{crudBean.selectedMember}"/>
 				</p:commandButton> 
 			</p:column>
 		</p:dataTable>
