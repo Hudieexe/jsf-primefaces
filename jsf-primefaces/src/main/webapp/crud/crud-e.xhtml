@@ -11,7 +11,7 @@
 
 
 	<p:panel rendered="#{crudBean.mode != 'R'}">
-	<p:messages id="messages"  closable="true" />
+	<p:messages id="messages" showDetail="true" closable="true" />
 		<p:panelGrid columns="3">
 			<p:outputLabel for="firstname_e" value="First Name" />
 			<p:inputText id="firstname_e"
@@ -33,8 +33,8 @@
 
 			
 			<p:outputLabel value= "Age"/>
-			<p:outputLabel value= "#{crudBean.employeeEdit.getAge(crudBean.employeeEdit.birthDate)}" />
-			<h:outputText />
+   			<p:outputLabel value= "#{crudBean.employeeEdit.getAge(crudBean.employeeEdit.birthDate)}" converter="customDateTimeConverter" />
+ 			<h:outputText />
 
 		</p:panelGrid>
 		

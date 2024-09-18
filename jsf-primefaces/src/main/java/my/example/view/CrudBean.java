@@ -2,7 +2,6 @@ package my.example.view;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -19,6 +18,7 @@ import my.example.exception.AgeUnderLimitException;
 import my.example.model.Employee;
 import my.example.service.EmployeeServiceable;
 
+
 @Slf4j
 @Setter
 @Getter
@@ -29,6 +29,10 @@ public class CrudBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private static final String AGEUNDER_LIMIT = "อายุต้องมากกว่า 2 ปี";
+	private static final String RECORFD_COMPELETE = "บันทึกข้อมูลเรียบร้อย";
+	private static final String DELETE_COMPELETE = "ลบข้อมูลสำเร็จ";
 
 	private String mode;
 	private Employee employeeCriteria;
@@ -43,7 +47,7 @@ public class CrudBean implements Serializable {
 	public void init() {
 		mode = "R";
 		employeeCriteria = new Employee();
-		employeeList = service.getEmployees(9);
+		employeeList = service.getEmployees(15);
 		employeeList = service.search(employeeCriteria);
 	}
 
@@ -64,24 +68,21 @@ public class CrudBean implements Serializable {
 		log.debug("begin editBtnOnclick employeeEdit -> {}", employeeEdit);
 		mode = "U";
 		employeeEdit = new Employee(p);
-
 		log.debug("end editBtnOnclick, {}", employeeEdit);
 	}
 
 	public void saveBtnOnclick() {
 		try {
 			log.debug("begin saveBtnOnclick employeeEdit -> {}, selectedMember -> {}", employeeEdit, selectedMember);
-			if (this.employeeEdit.getAgeBean(this.employeeEdit.getBirthDate()).getYears() < 2) {
+			if (this.employeeEdit.getAge(this.employeeEdit.getBirthDate()).getYears() < 2) {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "อายุต้องมากกว่า 2 ปี", "อายุต้องมากกว่า 2 ปี"));
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", AGEUNDER_LIMIT));
 				throw new AgeUnderLimitException("Age must be more than 2 years.");
 			} 
-
-			
 			service.add(employeeEdit);
 			mode = "U";
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "บันทึกข้อมูลเรียบร้อย", "บันทึกข้อมูลเรียบร้อย"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", RECORFD_COMPELETE));
 			this.selectedMember = new Employee(employeeEdit);
 		} catch (AgeUnderLimitException e) {
 			log.error("error employeeEdit {}", employeeEdit);
@@ -94,15 +95,15 @@ public class CrudBean implements Serializable {
 	public void updateBtnOnclick() {
 		try {
 			log.debug("begin updateBtnOnclick employeeEdit -> {}, selectedMember -> {}", employeeEdit, selectedMember);
-			if (this.employeeEdit.getAgeBean(this.employeeEdit.getBirthDate()).getYears() < 2) {
+			if (this.employeeEdit.getAge(this.employeeEdit.getBirthDate()).getYears() < 2) {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "อายุต้องมากกว่า 2 ปี", "อายุต้องมากกว่า 2 ปี"));
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", AGEUNDER_LIMIT));
 				employeeEdit = new Employee(selectedMember);
 				throw new AgeUnderLimitException("Age must be more than 2 years.");
 			}
 			service.update(employeeEdit);
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "บันทึกข้อมูลเรียบร้อย", "บันทึกข้อมูลเรียบร้อย"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", RECORFD_COMPELETE));
 		} catch (AgeUnderLimitException e) {
 			log.error("error employeeEdit {}", employeeEdit);
 			log.error("error Exception {}", e);
@@ -116,7 +117,7 @@ public class CrudBean implements Serializable {
 		log.debug("begin deleteBtnOnclick employeeEdit -> {}", employeeEdit);
 		service.delete(employeeEdit.getId());
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "ลบสำเร็จ", "ลบสำเร็จ"));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", DELETE_COMPELETE));
 		log.debug("end deleteBtnOnclick, {}", employeeEdit);
 	}
 

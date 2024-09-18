@@ -29,7 +29,8 @@
 		<p:commandButton id="reset" value="reset" update="@form"
 			action="#{crudBean.resetBtnOnclick}" /> 
 
-		<p:dataTable value="#{crudBean.employeeList}" var="m" selectionMode="single" selection="#{crudBean.selectedMember}" rowKey="#{m.id}">
+		<p:dataTable value="#{crudBean.employeeList}" var="m" selectionMode="single" 
+		selection="#{crudBean.selectedMember}" rowKey="#{m.id}" paginator="true" rows="10" paginatorPosition="bottom">
 			<p:ajax event="rowSelect"  listener="#{crudBean.onRowSelect}" update="@form" />
 			<p:column headerText="First">
 				#{m.firstName}
@@ -38,11 +39,12 @@
 			<p:column headerText="Last">
 				#{m.lastName}
 			</p:column>
-				
+
 			<p:column headerText="Age">
-				#{m.getAge(m.birthDate)}
+				<h:outputText value="#{m.getAge(m.birthDate)}"
+					converter="customDateTimeConverter" />
 			</p:column>
-				
+
 			<p:column headerText="Action">
 			 	<p:commandButton id="searchBtn" value="edit" update="@form" action="#{crudBean.editBtnOnclick(m)}">
 					<f:setPropertyActionListener value="#{m}" target="#{crudBean.selectedMember}"/>

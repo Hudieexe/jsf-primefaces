@@ -24,35 +24,23 @@ public class Employee implements Serializable {
 	private String lastName;
 
 	private LocalDate birthDate;
-	
 
 	public Employee() {
 		id = UUID.randomUUID().toString();
 	}
-	
-	
-	public String getAge(LocalDate birthDate) {
+
+	public Period getAge(LocalDate birthDate) {
 		if (birthDate != null) {
-			Period period = Period.between(birthDate, LocalDate.now());
-			return period.getYears() + " years " + period.getMonths() + " months " + "and " + period.getDays()
-					+ " days.";
+			return Period.between(birthDate, LocalDate.now());
 		}
 		return null;
 	}
-	
-	public Period getAgeBean(LocalDate birthDate) {
-	     if (birthDate != null) {
-	         return Period.between(birthDate, LocalDate.now()); 
-	     }
-	     return null; 
-	 }
-	
-	//Clone method
-    public Employee(Employee other) {
-        this.id = other.id;
-        this.firstName = other.firstName;
-        this.lastName = other.lastName;
-        this.birthDate = other.birthDate;
-    }
-	 }
-	
+
+	// Clone method
+	public Employee(Employee other) {
+		this.id = other.id;
+		this.firstName = other.firstName;
+		this.lastName = other.lastName;
+		this.birthDate = other.birthDate;
+	}
+}
