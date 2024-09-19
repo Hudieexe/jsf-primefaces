@@ -34,15 +34,21 @@ public class EmployeeServiceMemory implements EmployeeServiceable {
 		}
 	}
 	public List<Employee> search(Employee employee) {
-		List<Employee> employeeList = new ArrayList<>();
+		String firstNameQuery = (employee.getFirstName() != null) ? employee.getFirstName().toLowerCase() : "";
+		String lastNameQuery = (employee.getLastName() != null) ? employee.getLastName().toLowerCase() : "";
 
-			for (Map.Entry<String, Employee> entry : employeeMap.entrySet()) {
-				employeeList.add(entry.getValue());
-				
-				
+		List<Employee> results = new ArrayList<>();
+
+		for (Employee e : employeeMap.values()) {
+			boolean matchesFirstName = firstNameQuery.isEmpty()
+					|| e.getFirstName().toLowerCase().contains(firstNameQuery);
+			boolean matchesLastName = lastNameQuery.isEmpty() || e.getLastName().toLowerCase().contains(lastNameQuery);
+
+			if (matchesFirstName && matchesLastName) {
+				results.add(e);
+			}
 		}
-
-		return employeeList;
+		return results;
 	}
 
 	public int delete(String id) {
