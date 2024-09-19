@@ -139,6 +139,7 @@ public class CrudBean implements Serializable {
 			break;
 		case "R":
 			this.employeeCriteria = new Employee();
+			employeeList = service.search(employeeCriteria);
 			break;
 		default:
 			break;

@@ -41,22 +41,31 @@
 		
 		<p:commandButton id="saveBtn" value="create" update="@form"
 			action="#{crudBean.saveBtnOnclick}" 
-			rendered="#{crudBean.mode == 'C'}"/> 
-
+			rendered="#{crudBean.mode == 'C'}"> 
+			<p:confirm header="Confirmation" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+		</p:commandButton>
+		
 		<p:commandButton id="updateBtn" value="update" update="@form"
 			action="#{crudBean.updateBtnOnclick}" 
-			rendered="#{crudBean.mode == 'U'}"/>
+			rendered="#{crudBean.mode == 'U'}">
+			<p:confirm header="Confirmation" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+		</p:commandButton>
 			 
 		<p:commandButton id="deleteBtn" value="delete" update="@form"
 			action="#{crudBean.deleteBtnOnclick}" 
-			rendered="#{crudBean.mode == 'U'}"/> 
-			
+			rendered="#{crudBean.mode == 'U'}"> 
+			<p:confirm header="Confirmation" message="Are you sure you want to delete?" icon="pi pi-exclamation-triangle"/>
+		</p:commandButton>	
+		
 		<p:commandButton id="backPageBtn" value="Back" update="@form"
 			action="#{crudBean.backBtnOnclick}" immediate="true" />
 			
 		<p:commandButton id="reset2" value="reset" update="@form"
 			action="#{crudBean.resetBtnOnclick}" 
 			/> 
-			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        </p:confirmDialog>
 	</p:panel>
 </ui:composition>
