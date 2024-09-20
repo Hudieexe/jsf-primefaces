@@ -1,20 +1,31 @@
 package my.example.view;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import my.example.model.Person;
 import my.example.service.NameService;
 
 @SessionScoped
-@ManagedBean
+@Named
 public class JsfBean  implements Serializable{
 	
 	/**
 	 * 
 	 */
+	private void writeObject(java.io.ObjectOutputStream stream)
+	        throws IOException {
+	    stream.defaultWriteObject();
+	}
+
+	private void readObject(java.io.ObjectInputStream stream)
+	        throws IOException, ClassNotFoundException {
+	    stream.defaultReadObject();
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Person person= new Person();

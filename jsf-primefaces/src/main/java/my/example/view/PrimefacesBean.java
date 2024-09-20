@@ -1,23 +1,33 @@
 package my.example.view;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import my.example.model.Person;
 import my.example.service.NameService;
 
 
 @ViewScoped
-@ManagedBean(name = "pfBean")
+@Named(value = "pfBean")
 public class PrimefacesBean implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private void writeObject(java.io.ObjectOutputStream stream)
+	        throws IOException {
+	    stream.defaultWriteObject();
+	}
 
+	private void readObject(java.io.ObjectInputStream stream)
+	        throws IOException, ClassNotFoundException {
+	    stream.defaultReadObject();
+	}
 	private Person person = new Person();
 	private NameService service = new NameService();
 	private String fullName;
