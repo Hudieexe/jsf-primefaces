@@ -12,9 +12,11 @@ import com.github.javafaker.Faker;
 
 import my.example.model.Employee;
 import my.example.service.EmployeeServiceable;
+import my.example.service.qulifier.Repository;
 
 
 @ApplicationScoped
+@Repository(name = Repository.MEMORY)
 public class EmployeeServiceMemory implements EmployeeServiceable {
 
 	protected static Map<String, Employee> employeeMap = new HashMap<>();

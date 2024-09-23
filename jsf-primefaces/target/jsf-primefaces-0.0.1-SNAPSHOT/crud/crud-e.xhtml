@@ -9,9 +9,28 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: rgb(109, 159, 209);
+	justify-content: center;
+	align-items: center;
+}
 
+.card {
+	background-color: rgb(171, 255, 223);
+	padding: 20px;
+	border-radius: 5px;
+	box-color: rgb(98, 123, 153);
+	box-shadow: 0 0 10px rgb(0, 31, 61);
+}
+
+
+</style>
+	<div class="card">
 	<p:panel rendered="#{crudBean.mode != 'R'}">
 	<p:messages id="messages" showDetail="true" closable="true" />
+	
 		<p:panelGrid columns="3">
 			<p:outputLabel for="firstname_e" value="First Name" />
 			<p:inputText id="firstname_e"
@@ -41,22 +60,31 @@
 		
 		<p:commandButton id="saveBtn" value="create" update="@form"
 			action="#{crudBean.saveBtnOnclick}" 
-			rendered="#{crudBean.mode == 'C'}"/> 
-
+			rendered="#{crudBean.mode == 'C'}"> 
+		</p:commandButton>
+		
 		<p:commandButton id="updateBtn" value="update" update="@form"
 			action="#{crudBean.updateBtnOnclick}" 
-			rendered="#{crudBean.mode == 'U'}"/>
+			rendered="#{crudBean.mode == 'U'}">
+		</p:commandButton>
 			 
 		<p:commandButton id="deleteBtn" value="delete" update="@form"
 			action="#{crudBean.deleteBtnOnclick}" 
-			rendered="#{crudBean.mode == 'U'}"/> 
-			
+			rendered="#{crudBean.mode == 'U'}"> 
+			<p:confirm header="Confirmation" message="Are you sure you want to delete?" icon="pi pi-exclamation-triangle"/>
+		</p:commandButton>	
+		
 		<p:commandButton id="backPageBtn" value="Back" update="@form"
 			action="#{crudBean.backBtnOnclick}" immediate="true" />
 			
 		<p:commandButton id="reset2" value="reset" update="@form"
 			action="#{crudBean.resetBtnOnclick}" 
 			/> 
-			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        </p:confirmDialog>
 	</p:panel>
+</div>
+	
 </ui:composition>

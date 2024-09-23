@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import my.example.exception.AgeUnderLimitException;
 import my.example.model.Employee;
 import my.example.service.EmployeeServiceable;
+import my.example.service.qulifier.Repository;
 
 
 @Slf4j
@@ -41,6 +42,7 @@ public class CrudBean implements Serializable {
 	private List<Employee> employeeList;
 
 	@Inject
+	@Repository(name = Repository.MEMORY)
 	private EmployeeServiceable service;
 
 	@PostConstruct
