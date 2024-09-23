@@ -14,6 +14,7 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.shade.plugin>3.2.1</maven.shade.plugin>
 
 		<!-- Maven Build Plugin Properties -->
 		<my.maven.compiler>3.0</my.maven.compiler>
@@ -141,6 +142,7 @@
 			<version>${logback.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
 
 		<!-- เพิ่ม Dependency สำหรับ javax.validation -->
 

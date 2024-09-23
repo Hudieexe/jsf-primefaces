@@ -17,3 +17,4 @@ my\example\view\CrudView.class
 my\example\model\Person.class
 my\example\converter\CustomDateTimeConverter.class
 my\example\view\PrimefacesBean.class
+my\example\service\qulifier\Repository.class

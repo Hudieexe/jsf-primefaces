@@ -5,11 +5,18 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @AllArgsConstructor
 @Data
+@Entity
+@Table(name = "DATA_EMPLOYEE")
 public class Employee implements Serializable {
 
 	/**
@@ -17,12 +24,14 @@ public class Employee implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name= "ID")
 	private String id;
-
+	@Column(name= "FIRST_NAME")
 	private String firstName;
-
+	@Column(name= "LAST_NAME")
 	private String lastName;
-
+	@Column(name= "BIRTH_DATE")
 	private LocalDate birthDate;
 
 	public Employee() {

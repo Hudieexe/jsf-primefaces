@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 
 import com.github.javafaker.Faker;
 
@@ -16,6 +17,7 @@ import my.example.service.qulifier.Repository;
 
 
 @ApplicationScoped
+@Default
 @Repository(name = Repository.MEMORY)
 public class EmployeeServiceMemory implements EmployeeServiceable {
 

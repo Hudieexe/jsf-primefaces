@@ -2,9 +2,14 @@ package my.example.service.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import my.example.model.Employee;
 import my.example.service.EmployeeServiceable;
+import my.example.service.qulifier.Repository;
 
+@ApplicationScoped
+@Repository(name = Repository.DATABASE)
 public class EmployeeServiceDatabase implements EmployeeServiceable {
 
 	@Override
